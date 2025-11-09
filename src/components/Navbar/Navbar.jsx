@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import logo from "../../assets/FinEase-logo.png";
 import { Link, NavLink } from "react-router";
 import { TiThMenu } from "react-icons/ti";
 import { FadeLoader } from "react-spinners";
 import { AuthContext } from "../../context/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const user = useContext(AuthContext);
+  const {user} = useAuth()
   console.log(user);
 
   const navItem = (
