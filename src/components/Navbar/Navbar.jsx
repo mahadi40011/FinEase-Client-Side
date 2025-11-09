@@ -17,10 +17,10 @@ const Navbar = () => {
         <NavLink to="/profile">Profile</NavLink>
       </li>
       <li className="font-semibold text-xl">
-        <NavLink to="/add-transaction">Add Transaction</NavLink>
+        <NavLink to="/add-transaction">Add-Transaction</NavLink>
       </li>
       <li className="font-semibold text-xl">
-        <NavLink to="/my-transaction">My Transactions</NavLink>
+        <NavLink to="/my-transaction">My-Transactions</NavLink>
       </li>
       <li className="font-semibold text-xl">
         <NavLink to="/reports">Reports</NavLink>

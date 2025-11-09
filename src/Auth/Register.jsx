@@ -12,7 +12,7 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
-  const { googleLogin } = useAuth();
+  const { googleLogin, createUser } = useAuth();
 
   //email validation
   const handleEmailFieldOnBlur = (e) => {
@@ -50,6 +50,11 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    createUser(email, password).then(res => {
+      console.log(res.user)
+    }).catch(err => {
+      console.log(err.message)
+    })
   };
 
   return (
