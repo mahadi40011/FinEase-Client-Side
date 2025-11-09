@@ -3,6 +3,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { MdRemoveRedEye } from "react-icons/md";
 import { Link } from "react-router";
 import { FcGoogle } from "react-icons/fc";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
-
+  const { googleLogin } = useAuth();
 
   //email validation
   const handleEmailFieldOnBlur = (e) => {
@@ -37,9 +38,19 @@ const Register = () => {
     } else return setPasswordError(null);
   };
 
-  const handleSubmit = e => {
-   e.preventDefault()
- }
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-slate-200">
@@ -51,6 +62,7 @@ const Register = () => {
 
         {/* google Login */}
         <button
+          onClick={handleGoogleLogin}
           className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center cursor-pointer"
         >
           <FcGoogle className="text-xl" /> <span> Continue with Google</span>

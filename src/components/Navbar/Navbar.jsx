@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const {user} = useAuth()
+  const { user, loading } = useAuth();
   console.log(user);
 
   const navItem = (
@@ -65,10 +65,9 @@ const Navbar = () => {
               title={user.displayName}
             />
           )} */}
-            {/* {loading ? (
-            <FadeLoader className="mr-15" color="#ffffff" />
-          ) :  */}
-            {user ? (
+            {loading ? (
+              <FadeLoader className="mr-15" color="#ffffff" />
+            ) : user ? (
               <button
                 type="button"
                 // onClick={handleLogOut}

@@ -4,6 +4,9 @@ import Home from "../pages/Home/Home";
 import Profile from "../components/Profile/Profile";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
+import Report from "../pages/Report/Report";
+import AddTransaction from "../pages/AddTransaction/AddTransaction";
+import MyTransaction from "../pages/MyTransaction/MyTransaction";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +20,18 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         Component: Profile,
+      },
+      {
+        path: "/add-transaction",
+        Component: AddTransaction,
+      },
+      {
+        path: "/my-transaction",
+        Component: MyTransaction,
+      },
+      {
+        path: "/reports",
+        Component: Report,
       },
       {
         path: "/auth/login",

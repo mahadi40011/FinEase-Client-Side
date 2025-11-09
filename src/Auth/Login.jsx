@@ -3,6 +3,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { MdRemoveRedEye } from "react-icons/md";
 import { Link } from "react-router";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,8 @@ const Login = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const { googleLogin } = useAuth();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,12 +42,22 @@ const Login = () => {
     } else return setPasswordError("");
   };
 
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[89.5vh] bg-slate-200">
+    <div className="flex items-center justify-center min-h-[89vh] bg-slate-200">
       <title>FinEase - Login</title>
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
         <h2 className="sm:text-3xl text-2xl font-bold text-center text-slate-800 mb-8">
@@ -52,7 +65,10 @@ const Login = () => {
         </h2>
 
         {/* google Login */}
-        <button className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full cursor-pointer text-center">
+        <button
+          onClick={handleGoogleLogin}
+          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full cursor-pointer text-center"
+        >
           <FcGoogle className="text-xl" /> <span> Login with Google</span>
         </button>
 
