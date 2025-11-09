@@ -7,10 +7,14 @@
   --color-secondary: teal;
 }
 
+.container{
+  @apply max-w-[1600px] mx-auto
+}
+
 .responsive-container{
   @apply w-11/12 mx-auto
 }
 
 .navbar a.active{
-  @apply border-b-2 border-sky-900
+  @apply border-b-2 md:border-b-3 pb-2 border-sky-900 text-sky-900 font-bold
 }
