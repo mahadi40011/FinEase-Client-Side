@@ -12,7 +12,7 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const { googleLogin } = useAuth();
+  const { googleLogin, LoginUser } = useAuth();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -54,6 +54,14 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    LoginUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
