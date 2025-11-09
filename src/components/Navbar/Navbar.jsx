@@ -1,14 +1,12 @@
 import React from "react";
 import logo from "../../assets/FinEase-logo.png";
 import { Link, NavLink } from "react-router";
-import { TiThMenu } from "react-icons/ti";
 import { FadeLoader } from "react-spinners";
-import { AuthContext } from "../../context/AuthContext";
 import useAuth from "../../hooks/useAuth";
+import { HiMenu } from "react-icons/hi";
 
 const Navbar = () => {
-  const { user, loading } = useAuth();
-  console.log(user);
+  const { user, loading, logOutUser } = useAuth();
 
   const navItem = (
     <>
@@ -30,6 +28,14 @@ const Navbar = () => {
     </>
   );
 
+  const handleLogOut = () => {
+    logOutUser()
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className=" shadow-sm">
       <div className="container shadow-sm">
@@ -37,7 +43,7 @@ const Navbar = () => {
           <div className="navbar-start flex justify-start items-center">
             <div className="dropdown">
               <div tabIndex={0} role="button" className="mr-3 lg:hidden">
-                <TiThMenu className="cursor-pointer" size={30} />
+                <HiMenu className="cursor-pointer" size={40} />
               </div>
               <ul
                 tabIndex="-1"
@@ -57,24 +63,36 @@ const Navbar = () => {
             <ul className="flex gap-4">{navItem}</ul>
           </div>
           <div className="navbar-end">
-            {/* {user && (
-            <img
-              className="w-12 h-12 rounded-full cursor-pointer"
-              src={user.photoURL}
-              alt="Profile Photo"
-              title={user.displayName}
-            />
-          )} */}
             {loading ? (
-              <FadeLoader className="mr-15" color="#ffffff" />
+              <FadeLoader height={12} radius={5} margin={-3} color="#05545c" />
             ) : user ? (
-              <button
-                type="button"
-                // onClick={handleLogOut}
-                className="btn bg-sky-900 border-none text-white text-xl ml-2"
-              >
-                Log Out
-              </button>
+              <>
+                <div className="dropdown dropdown-end">
+                  <div tabIndex={0} role="button" className=" m-1">
+                    <img
+                      className="w-11 h-11 sm:w-14 sm:h-14 rounded-full cursor-pointer"
+                      src={user.photoURL}
+                      alt="Profile Photo"
+                      title={user.displayName}
+                    />
+                  </div>
+                  <div
+                    tabIndex="-1"
+                    className="dropdown-content menu text-center bg-base-100 rounded-box z-1 w-64 space-y-2 p-2 shadow-sm"
+                  >
+                    <h1 className="text-2xl font-semibold">
+                      {user.displayName}
+                    </h1>
+                    <p className="text-lg">{user.email}</p>
+                    <button
+                      onClick={handleLogOut}
+                      className="btn btn-sm sm:btn-md bg-sky-900 border-none text-white font-base sm:font-semibold text-lg sm:text-xl ml-2"
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                </div>
+              </>
             ) : (
               <>
                 <Link
