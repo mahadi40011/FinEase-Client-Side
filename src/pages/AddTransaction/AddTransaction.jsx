@@ -5,21 +5,29 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 const AddTransaction = () => {
   const { user, loading } = useAuth();
   const [category, setCategory] = useState("");
+  const [type, setType] = useState("");
 
   if (loading) return <LoadingSpinner />;
 
-  const { displayName, email } = user;
+  const incomeCategories = ["Salary", "Investments", "Gifts", "Other"];
+  const expenseCategories = [
+    "Food",
+    "Travel",
+    "Shopping",
+    "Utilities",
+    "Others",
+  ];
 
   const handleAddTransaction = (e) => {
     e.preventDefault();
-    const type = e.target.type.value;
-    const user_name = user?.displayName;
-    const user_email = user?.email;
+
+    const name = user?.displayName;
+    const email = user?.email;
     const date = e.target.date.value;
     const amount = e.target.amount.value;
     const description = e.target.description.value;
 
-    console.log({ type, user_name, user_email, category, date, amount, description });
+    console.log({ type, name, email, category, date, amount, description });
   };
 
   return (
@@ -29,15 +37,21 @@ const AddTransaction = () => {
       </h2>
 
       <form onSubmit={handleAddTransaction} className="space-y-6">
-        {/* Type */}
+        {/* Type (Radio Buttons) */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40">Type:</label>
+          <label className="block font-medium text-gray-700 mb-2 md:mb-0">
+            Type
+          </label>
           <div className="flex gap-6">
             <label className="flex items-center gap-2">
               <input
                 type="radio"
-                name="type"
-                value="income"
+                value="Income"
+                checked={type === "Income"}
+                onChange={() => {
+                  setType("Income");
+                  setCategory("");
+                }}
                 className="radio radio-primary"
               />
               <span>Income</span>
@@ -45,8 +59,12 @@ const AddTransaction = () => {
             <label className="flex items-center gap-2">
               <input
                 type="radio"
-                name="type"
-                value="expense"
+                value="Expense"
+                checked={type === "Expense"}
+                onChange={() => {
+                  setType("Expense");
+                  setCategory("");
+                }}
                 className="radio radio-secondary"
               />
               <span>Expense</span>
@@ -54,50 +72,61 @@ const AddTransaction = () => {
           </div>
         </div>
 
+        {/* Category (Dropdown) */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+          <label className="block font-medium text-gray-700 mb-2 md:mb-0">
+            Category
+          </label>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="select select-bordered w-full  md:w-2/3 border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
+          >
+            <option value="" disabled>
+              {type ? "Select Category" : "Select Type First"}
+            </option>
+            {type &&
+              (type === "Income" ? incomeCategories : expenseCategories).map(
+                (cat, i) => (
+                  <option key={i} value={cat}>
+                    {cat}
+                  </option>
+                )
+              )}
+          </select>
+        </div>
+
         {/* User Name */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40">User Name:</label>
+          <label className="text-gray-700 font-medium w-40 mb-2 md:mb-0">
+            User Name:
+          </label>
           <input
             type="text"
             readOnly
-            defaultValue={displayName}
+            defaultValue={user?.displayName}
             className="input input-bordered w-full md:w-2/3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900 bg-gray-100 cursor-not-allowed"
           />
         </div>
 
         {/* User Email */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40">User Email:</label>
+          <label className="text-gray-700 font-medium w-40 mb-2 md:mb-0">
+            User Email:
+          </label>
           <input
             type="email"
             readOnly
-            defaultValue={email}
+            defaultValue={user?.email}
             className="input input-bordered w-full md:w-2/3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900 bg-gray-100 cursor-not-allowed"
           />
         </div>
 
-        {/* Category */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40">Category:</label>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="select select-bordered w-full md:w-2/3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
-          >
-            <option value="" disabled>
-              Select Category
-            </option>
-            <option value="Food">Food</option>
-            <option value="Travel">Travel</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Salary">Salary</option>
-            <option value="Others">Others</option>
-          </select>
-        </div>
-
         {/* Date */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40">Date:</label>
+          <label className="text-gray-700 font-medium w-40 mb-2 md:mb-0">
+            Date:
+          </label>
           <input
             type="date"
             name="date"
@@ -107,7 +136,9 @@ const AddTransaction = () => {
 
         {/* Amount */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40">Amount:</label>
+          <label className="text-gray-700 font-medium w-40 mb-2 md:mb-0">
+            Amount:
+          </label>
           <input
             type="number"
             name="amount"
@@ -118,7 +149,9 @@ const AddTransaction = () => {
 
         {/* Description */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40">Description:</label>
+          <label className="text-gray-700 font-medium w-40 mb-2 md:mb-0">
+            Description:
+          </label>
           <input
             type="text"
             name="description"
