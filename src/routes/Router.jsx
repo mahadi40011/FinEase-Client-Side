@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import Root from "../layout/Root";
 import Home from "../pages/Home/Home";
-import Profile from "../components/Profile/Profile";
+import Profile from "../pages/Profile/Profile";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
 import Report from "../pages/Report/Report";
