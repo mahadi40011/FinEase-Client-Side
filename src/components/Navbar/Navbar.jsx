@@ -97,13 +97,13 @@ const Navbar = () => {
               <>
                 <Link
                   to={"/auth/login"}
-                  className="btn btn-sm sm:btn-md bg-sky-900 border-none text-white font-base sm:font-semibold text-lg sm:text-xl ml-2"
+                  className="btn btn-sm sm:btn-md bg-sky-900 hover:bg-sky-700 transition duration-200 border-none text-white font-base sm:font-semibold text-lg sm:text-xl ml-2"
                 >
                   Login
                 </Link>
                 <Link
                   to={"/auth/register"}
-                  className="btn btn-sm sm:btn-md bg-sky-900 border-none text-white font-base sm:font-semibold text-lg sm:text-xl ml-2"
+                  className="btn btn-sm sm:btn-md bg-sky-900 hover:bg-sky-700 transition duration-200 border-none text-white font-base sm:font-semibold text-lg sm:text-xl ml-2"
                 >
                   Sign Up
                 </Link>
