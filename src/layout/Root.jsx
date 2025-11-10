@@ -4,9 +4,13 @@ import Navbar from '../components/Navbar/Navbar';
 
 const Root = () => {
   return (
-    <div>
-      <Navbar/>
-      <Outlet/>
+    <div className='flex flex-col'>
+      <header>
+        <Navbar />
+      </header>
+      <main className='flex-1'>
+        <Outlet />
+      </main>
     </div>
   );
 };
