@@ -7,10 +7,12 @@ import Register from "../Auth/Register";
 import Report from "../pages/Report/Report";
 import AddTransaction from "../pages/AddTransaction/AddTransaction";
 import MyTransaction from "../pages/MyTransaction/MyTransaction";
+import Error404 from "../pages/Error404/Error404";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <Error404/>,
     Component: Root,
     children: [
       {
