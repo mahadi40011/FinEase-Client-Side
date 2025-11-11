@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -13,14 +14,19 @@ const MyTransactions = () => {
   };
 
   useEffect(() => {
-    fetch("/fake.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setTransactions(data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    axios.get("http://localhost:3000/all-transactions").then((data) => {
+      console.log(data.data);
+      const allTransaction = data.data
+      setTransactions(allTransaction)
+    });
+    // fetch("/fake.json")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setTransactions(data);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
   }, []);
 
   return (
@@ -32,7 +38,7 @@ const MyTransactions = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {transactions.map((tx) => (
           <div
-            key={tx.id}
+            key={tx._id}
             className="bg-white shadow-lg rounded-2xl p-6 border border-gray-200 hover:shadow-2xl transition duration-300"
           >
             {/* Type & Date */}
