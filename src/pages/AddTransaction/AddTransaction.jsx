@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import useAxios from "../../hooks/useAxios";
+import Swal from "sweetalert2";
 
 const AddTransaction = () => {
   const { user, loading } = useAuth();
@@ -39,8 +40,14 @@ const AddTransaction = () => {
       description,
     };
 
-    axiosInstance.post("/add-transaction", newTransaction).then((res) => {
-      console.log(res.data);
+    axiosInstance.post("/add-transaction", newTransaction).then(() => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Login successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     });
   };
 

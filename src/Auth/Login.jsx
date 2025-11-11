@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { MdRemoveRedEye } from "react-icons/md";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -46,12 +47,22 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
-      .then((result) => {
-        console.log(result.user);
-        navigate(location.state || "/")
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Login successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(location.state || "/");
       })
       .catch((err) => {
-        console.log(err.message);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: err.message,
+        });
       });
   };
 
@@ -59,12 +70,22 @@ const Login = () => {
     e.preventDefault();
 
     LoginUser(email, password)
-      .then((res) => {
-        console.log(res.user);
-        navigate(location.state || "/")
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Login successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(location.state || "/");
       })
       .catch((err) => {
-        console.log(err.message);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: err.message,
+        });
       });
   };
 
@@ -84,9 +105,7 @@ const Login = () => {
           <FcGoogle className="text-xl" /> <span> Login with Google</span>
         </button>
 
-        <div className="text-center  text-md mb-4">
-          — or login with email —
-        </div>
+        <div className="text-center  text-md mb-4">— or login with email —</div>
 
         <form onSubmit={handleSubmit}>
           {/* Email */}

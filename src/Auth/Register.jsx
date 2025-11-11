@@ -4,6 +4,7 @@ import { MdRemoveRedEye } from "react-icons/md";
 import { Link, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -41,24 +42,44 @@ const Register = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Login successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/");
       })
       .catch((err) => {
-        console.log(err.message);
+         Swal.fire({
+           position: "center",
+           icon: "error",
+           title: err.message,
+         });
       });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createUser(email, password)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Register successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/");
       })
       .catch((err) => {
-        console.log(err.message);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: err.message,
+        });
       });
   };
 
@@ -84,9 +105,7 @@ const Register = () => {
 
         <form onSubmit={handleSubmit}>
           {/* Name */}
-          <label className="block text-sm font-medium  mt-5 mb-1">
-            Name
-          </label>
+          <label className="block text-sm font-medium  mt-5 mb-1">Name</label>
           <input
             type="text"
             name="name"
@@ -96,9 +115,7 @@ const Register = () => {
           />
 
           {/* Email */}
-          <label className="block text-sm font-medium  mt-5 mb-1">
-            Email
-          </label>
+          <label className="block text-sm font-medium  mt-5 mb-1">Email</label>
           <input
             type="email"
             placeholder="Enter your email"
