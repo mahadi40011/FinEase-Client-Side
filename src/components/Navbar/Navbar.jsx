@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/FinEase-logo.png";
 import { Link, NavLink } from "react-router";
 import { FadeLoader } from "react-spinners";
 import useAuth from "../../hooks/useAuth";
 import { HiMenu } from "react-icons/hi";
+import { Settings } from "lucide-react";
 
 const Navbar = () => {
   const { user, loading, logOutUser } = useAuth();
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const navItem = (
     <>
@@ -36,9 +38,19 @@ const Navbar = () => {
       });
   };
 
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
   return (
     <div className=" shadow-sm">
-      <div className="container shadow-sm">
+      <div className="container ">
         <div className="responsive-container navbar ">
           <div className="navbar-start flex justify-start items-center">
             <div className="dropdown">
@@ -71,22 +83,33 @@ const Navbar = () => {
                   <div tabIndex={0} role="button" className=" m-1">
                     <img
                       className="w-11 h-11 sm:w-14 sm:h-14 rounded-full cursor-pointer"
-                      src={user.photoURL}
+                      src={user?.photoURL}
                       alt="Profile Photo"
-                      title={user.displayName}
+                      title={user?.displayName}
                     />
                   </div>
                   <div
                     tabIndex="-1"
-                    className="dropdown-content menu text-center bg-base-100 rounded-box z-1 w-64 space-y-2 p-2 shadow-sm"
+                    className="dropdown-content menu text-start bg-base-100 rounded-box z-1 w-64 space-y-2 p-4 shadow-sm"
                   >
-                    <h1 className="text-2xl font-semibold">
-                      {user.displayName}
-                    </h1>
-                    <p className="text-lg">{user.email}</p>
+                    <div className="mb-4 ">
+                      <h1 className="text-lg font-semibold">
+                        {user?.displayName}
+                      </h1>
+                      <p className="text-base">{user?.email}</p>
+                    </div>
+                    <div className="flex justify-between items-center gap-1 mb-4">
+                      <span className="font-medium">Dark Mode</span>
+                      <input
+                        onClick={(e) => handleTheme(e.target.checked)}
+                        type="checkbox"
+                        className="toggle toggle-xs toggle-primary"
+                      />
+                      
+                    </div>
                     <button
                       onClick={handleLogOut}
-                      className="btn btn-sm sm:btn-md bg-sky-900 border-none text-white font-base sm:font-semibold text-lg sm:text-xl ml-2"
+                      className="btn btn-sm sm:btn-md bg-sky-900 border-none text-white font-base sm:font-semibold text-lg sm:text-xl"
                     >
                       Log Out
                     </button>
