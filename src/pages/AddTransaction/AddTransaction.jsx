@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import axios from "axios";
 
 const AddTransaction = () => {
   const { user, loading } = useAuth();
@@ -27,7 +28,22 @@ const AddTransaction = () => {
     const amount = parseInt(e.target.amount.value);
     const description = e.target.description.value;
 
-    console.log({ type, name, email, category, date, amount, description });
+    const newTransaction = {
+      type,
+      category,
+      name,
+      email,
+      date,
+      amount,
+      description,
+    };
+    console.log(newTransaction);
+
+    axios
+      .post("http://localhost:3000/transaction", newTransaction)
+      .then((res) => {
+        console.log(res.data);
+      });
   };
 
   return (
