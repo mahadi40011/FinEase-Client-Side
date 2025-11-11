@@ -39,7 +39,7 @@ const AddTransaction = () => {
       description,
     };
 
-    axiosInstance.post("/transaction", newTransaction).then((res) => {
+    axiosInstance.post("/add-transaction", newTransaction).then((res) => {
       console.log(res.data);
     });
   };

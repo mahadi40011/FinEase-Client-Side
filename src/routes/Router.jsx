@@ -7,7 +7,7 @@ import Register from "../Auth/Register";
 import Report from "../pages/Report/Report";
 import AddTransaction from "../pages/AddTransaction/AddTransaction";
 import Error404 from "../pages/Error404/Error404";
-// import TransactionDetails from "../pages/TransactionDetails/TransactionDetails";
+import TransactionDetails from "../pages/TransactionDetails/TransactionDetails";
 import PrivateRoute from "./PrivateRoute";
 import MyTransactions from "../pages/MyTransactions/MyTransactions";
 
@@ -61,11 +61,16 @@ const router = createBrowserRouter([
         path: "/auth/register",
         Component: Register,
       },
-      // {
-      //   path: "/details/:id",
-      //   Component: TransactionDetails,
-      //   loader: () => fetch(`/fake.json`).then((res) => res.json()),
-      // },
+      {
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <TransactionDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/transaction/${params.id}`),
+      },
     ],
   },
 ]);

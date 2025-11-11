@@ -7,19 +7,18 @@ const MyTransactions = () => {
   const [transactions, setTransactions] = useState([]);
   const navigate = useNavigate();
 
-  const handleUpdate = (id) => console.log("Update:", id);
-  const handleDelete = (id) => console.log("Delete:", id);
-  const handleViewDetails = (id) => {
-    console.log("View Details:", id);
-    navigate(`/details/${id}`);
-  };
-
   useEffect(() => {
-    axiosInstance.get("/all-transactions").then((data) => {
+    axiosInstance.get("/my-transactions").then((data) => {
       const allTransaction = data.data;
       setTransactions(allTransaction);
     });
   }, [axiosInstance]);
+
+  const handleUpdate = (id) => console.log("Update:", id);
+  const handleDelete = (id) => console.log("Delete:", id);
+  const handleViewDetails = (id) => {
+    navigate(`/details/${id}`);
+  };
 
   return (
     <div className="max-w-6xl mx-auto p-6">
@@ -64,19 +63,19 @@ const MyTransactions = () => {
             {/* Buttons */}
             <div className="flex flex-wrap  gap-2 mt-2">
               <button
-                onClick={() => handleUpdate(tx.id)}
+                onClick={() => handleUpdate(tx._id)}
                 className="px-3 py-1 rounded text-white text-sm font-medium bg-sky-900 hover:bg-sky-700 transition duration-200 cursor-pointer"
               >
                 Update
               </button>
               <button
-                onClick={() => handleDelete(tx.id)}
+                onClick={() => handleDelete(tx._id)}
                 className="px-3 py-1 rounded text-white text-sm font-medium bg-sky-900 hover:bg-sky-700 transition duration-200 cursor-pointer"
               >
                 Delete
               </button>
               <button
-                onClick={() => handleViewDetails(tx.id)}
+                onClick={() => handleViewDetails(tx._id)}
                 className="px-3 py-1 rounded text-white text-sm font-medium bg-sky-900 hover:bg-sky-700 transition duration-200 cursor-pointer"
               >
                 View Details
