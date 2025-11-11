@@ -69,28 +69,28 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[89vh] bg-slate-200">
+    <div className="flex items-center justify-center min-h-[89vh]">
       <title>FinEase - Login</title>
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="sm:text-3xl text-2xl font-bold text-center text-slate-800 mb-8">
+      <div className=" p-8 rounded-2xl shadow-lg w-full max-w-md">
+        <h2 className="sm:text-3xl text-2xl font-bold text-center mb-8">
           Please Login
         </h2>
 
         {/* google Login */}
         <button
           onClick={handleGoogleLogin}
-          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full cursor-pointer text-center"
+          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300  transition w-full cursor-pointer text-center"
         >
           <FcGoogle className="text-xl" /> <span> Login with Google</span>
         </button>
 
-        <div className="text-center text-gray-500 text-md mb-4">
+        <div className="text-center  text-md mb-4">
           — or login with email —
         </div>
 
         <form onSubmit={handleSubmit}>
           {/* Email */}
-          <label className="block text-sm font-medium text-gray-600 mb-1">
+          <label className="block text-sm font-medium  mb-1">
             Email Address
           </label>
           <input
@@ -107,7 +107,7 @@ const Login = () => {
 
           {/* Password */}
           <div className="relative">
-            <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
+            <label className="block text-sm font-medium  mt-5 mb-1">
               Password
             </label>
             <input
@@ -129,7 +129,7 @@ const Login = () => {
           </div>
 
           {/* Forgot Password */}
-          <div className="flex items-center justify-between text-sm mt-2 mb-5 text-gray-600">
+          <div className="flex items-center justify-between text-sm mt-2 mb-5 ">
             <Link
               to="/forgot-password"
               className="text-sky-600 hover:underline"
@@ -148,7 +148,7 @@ const Login = () => {
         </form>
 
         {/* Register Link */}
-        <p className="text-center text-gray-600 mt-6 text-md">
+        <p className="text-center  mt-6 text-md">
           Don’t have an account?{" "}
           <Link
             to="/auth/register"

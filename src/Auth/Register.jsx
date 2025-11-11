@@ -63,28 +63,28 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-slate-200">
+    <div className="flex items-center justify-center min-h-screen ">
       <title>FinEase - Register</title>
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-slate-800 mb-6">
+      <div className=" p-8 rounded-2xl shadow-lg w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center  mb-6">
           Create Your Account
         </h2>
 
         {/* google Login */}
         <button
           onClick={handleGoogleLogin}
-          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center cursor-pointer"
+          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 transition w-full text-center cursor-pointer"
         >
           <FcGoogle className="text-xl" /> <span> Continue with Google</span>
         </button>
 
-        <div className="text-center text-gray-500 text-md mb-4">
+        <div className="text-center  text-md mb-4">
           — or SignUp with Email —
         </div>
 
         <form onSubmit={handleSubmit}>
           {/* Name */}
-          <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
+          <label className="block text-sm font-medium  mt-5 mb-1">
             Name
           </label>
           <input
@@ -96,7 +96,7 @@ const Register = () => {
           />
 
           {/* Email */}
-          <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
+          <label className="block text-sm font-medium  mt-5 mb-1">
             Email
           </label>
           <input
@@ -111,7 +111,7 @@ const Register = () => {
           <span className="text-red-500">{emailError}</span>
 
           {/* Photo URL */}
-          <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
+          <label className="block text-sm font-medium  mt-5 mb-1">
             Photo URL
           </label>
           <input
@@ -124,7 +124,7 @@ const Register = () => {
 
           {/* Password */}
           <div className="relative">
-            <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
+            <label className="block text-sm font-medium  mt-5 mb-1">
               Password
             </label>
             <input
@@ -154,7 +154,7 @@ const Register = () => {
         </form>
 
         {/* Register Link */}
-        <p className="text-center text-gray-600 mt-6 text-md">
+        <p className="text-center  mt-6 text-md">
           Already have an account?{" "}
           <Link
             to="/auth/login"
