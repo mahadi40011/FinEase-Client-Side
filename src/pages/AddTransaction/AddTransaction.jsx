@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import axios from "axios";
+import useAxios from "../../hooks/useAxios";
 
 const AddTransaction = () => {
   const { user, loading } = useAuth();
+  const axiosInstance = useAxios();
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
 
@@ -37,13 +38,10 @@ const AddTransaction = () => {
       amount,
       description,
     };
-    console.log(newTransaction);
 
-    axios
-      .post("http://localhost:3000/transaction", newTransaction)
-      .then((res) => {
-        console.log(res.data);
-      });
+    axiosInstance.post("/transaction", newTransaction).then((res) => {
+      console.log(res.data);
+    });
   };
 
   return (

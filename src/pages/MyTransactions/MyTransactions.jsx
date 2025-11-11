@@ -1,8 +1,9 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import useAxios from "../../hooks/useAxios";
 
 const MyTransactions = () => {
+  const axiosInstance = useAxios();
   const [transactions, setTransactions] = useState([]);
   const navigate = useNavigate();
 
@@ -14,20 +15,11 @@ const MyTransactions = () => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:3000/all-transactions").then((data) => {
-      console.log(data.data);
-      const allTransaction = data.data
-      setTransactions(allTransaction)
+    axiosInstance.get("/all-transactions").then((data) => {
+      const allTransaction = data.data;
+      setTransactions(allTransaction);
     });
-    // fetch("/fake.json")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setTransactions(data);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
-  }, []);
+  }, [axiosInstance]);
 
   return (
     <div className="max-w-6xl mx-auto p-6">
