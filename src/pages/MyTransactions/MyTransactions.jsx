@@ -1,21 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import useAxios from "../../hooks/useAxios";
+import useAuth from "../../hooks/useAuth";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import Swal from "sweetalert2";
 
 const MyTransactions = () => {
+  const { user, loading } = useAuth();
   const axiosInstance = useAxios();
   const [transactions, setTransactions] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axiosInstance.get("/my-transactions").then((data) => {
+    axiosInstance.get(`/my-transactions?email=${user?.email}`).then((data) => {
       const allTransaction = data.data;
       setTransactions(allTransaction);
     });
-  }, [axiosInstance]);
+  }, [axiosInstance, user]);
+
+  if (loading) return <LoadingSpinner />;
 
   const handleUpdate = (id) => console.log("Update:", id);
-  const handleDelete = (id) => console.log("Delete:", id);
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.delete(`/transaction/${id}`).then((res) => {
+          console.log(res.data);
+          const remaining = transactions.filter((tx) => tx._id !== id);
+          setTransactions(remaining);
+        });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
   const handleViewDetails = (id) => {
     navigate(`/details/${id}`);
   };
