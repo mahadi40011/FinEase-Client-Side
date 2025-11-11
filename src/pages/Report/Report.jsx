@@ -44,16 +44,13 @@ const Report = () => {
     "Dec",
   ];
 
-  // মাসভিত্তিক income-expense হিসাব করা
   const processData = (data) => {
-    // শুরুতে ১২ মাসের খালি ডেটা তৈরি
     const monthly = months.map((month) => ({
       month,
       income: 0,
       expense: 0,
     }));
 
-    // ডেটা থেকে প্রতিটি ট্রান্স্যাকশন যোগ করা
     data.forEach((item) => {
       const monthIndex = new Date(item.date).getMonth();
       if (item.type === "Income") monthly[monthIndex].income += item.amount;
@@ -67,8 +64,8 @@ const Report = () => {
   const chartData = processData(transactions);
 
   return (
-    <div className="max-w-5xl mx-auto mt-12 p-10 bg-linear-to-br from-white to-blue-50 rounded-3xl shadow-lg border border-gray-100">
-      <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
+    <div className="max-w-5xl mx-auto mt-12 p-10 rounded-3xl shadow-lg border border-gray-100">
+      <h2 className="text-3xl font-bold  text-center mb-8">
         Monthly Income vs Expense (2025)
       </h2>
 
@@ -78,14 +75,14 @@ const Report = () => {
           margin={{ top: 20, right: 30, left: 15, bottom: 10 }}
         >
           <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-          <XAxis dataKey="month" tick={{ fill: "#374151", fontSize: 12 }} />
+          <XAxis dataKey="month" tick={{ fontSize: 16 }} />
           <YAxis
-            tick={{ fill: "#374151", fontSize: 12 }}
+            tick={{ fontSize: 16 }}
             tickFormatter={(value) => `৳${value.toLocaleString()}`}
           />
           <Tooltip
             formatter={(value) => [`৳${value.toLocaleString()}`, "Amount"]}
-            labelStyle={{ color: "#111827", fontWeight: "600" }}
+            labelStyle={{ fontWeight: "600" }}
             contentStyle={{
               backgroundColor: "#F9FAFB",
               borderRadius: "10px",

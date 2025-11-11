@@ -45,17 +45,15 @@ const AddTransaction = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-2xl mt-10 border border-gray-100">
-      <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
+    <div className="max-w-4xl mx-auto p-6 shadow-lg rounded-2xl mt-10 border border-gray-100">
+      <h2 className="text-2xl font-semibold mb-6 text-center">
         Add New Transaction
       </h2>
 
       <form onSubmit={handleAddTransaction} className="space-y-6">
         {/* Type (Radio Buttons) */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="block font-medium text-gray-700 mb-2 md:mb-0">
-            Type
-          </label>
+          <label className="block font-medium mb-2 md:mb-0">Type</label>
           <div className="flex gap-6">
             <label className="flex items-center gap-2">
               <input
@@ -88,9 +86,7 @@ const AddTransaction = () => {
 
         {/* Category (Dropdown) */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="block font-medium text-gray-700 mb-2 md:mb-0">
-            Category
-          </label>
+          <label className="block font-medium  mb-2 md:mb-0">Category</label>
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -112,35 +108,29 @@ const AddTransaction = () => {
 
         {/* User Name */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40 mb-2 md:mb-0">
-            User Name:
-          </label>
+          <label className=" font-medium w-40 mb-2 md:mb-0">User Name:</label>
           <input
             type="text"
             readOnly
             defaultValue={user?.displayName}
-            className="input input-bordered w-full md:w-2/3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900 bg-gray-100 cursor-not-allowed"
+            className="input input-bordered w-full md:w-2/3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900  cursor-not-allowed"
           />
         </div>
 
         {/* User Email */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40 mb-2 md:mb-0">
-            User Email:
-          </label>
+          <label className=" font-medium w-40 mb-2 md:mb-0">User Email:</label>
           <input
             type="email"
             readOnly
             defaultValue={user?.email}
-            className="input input-bordered w-full md:w-2/3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900 bg-gray-100 cursor-not-allowed"
+            className="input input-bordered w-full md:w-2/3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900  cursor-not-allowed"
           />
         </div>
 
         {/* Date */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40 mb-2 md:mb-0">
-            Date:
-          </label>
+          <label className=" font-medium w-40 mb-2 md:mb-0">Date:</label>
           <input
             type="date"
             name="date"
@@ -150,9 +140,7 @@ const AddTransaction = () => {
 
         {/* Amount */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40 mb-2 md:mb-0">
-            Amount:
-          </label>
+          <label className=" font-medium w-40 mb-2 md:mb-0">Amount:</label>
           <input
             type="number"
             name="amount"
@@ -163,9 +151,7 @@ const AddTransaction = () => {
 
         {/* Description */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <label className="text-gray-700 font-medium w-40 mb-2 md:mb-0">
-            Description:
-          </label>
+          <label className=" font-medium w-40 mb-2 md:mb-0">Description:</label>
           <input
             type="text"
             name="description"
