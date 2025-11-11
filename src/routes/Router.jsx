@@ -6,13 +6,15 @@ import Login from "../Auth/Login";
 import Register from "../Auth/Register";
 import Report from "../pages/Report/Report";
 import AddTransaction from "../pages/AddTransaction/AddTransaction";
-import MyTransaction from "../pages/MyTransaction/MyTransaction";
 import Error404 from "../pages/Error404/Error404";
+// import TransactionDetails from "../pages/TransactionDetails/TransactionDetails";
+import PrivateRoute from "./PrivateRoute";
+import MyTransactions from "../pages/MyTransactions/MyTransactions";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <Error404/>,
+    errorElement: <Error404 />,
     Component: Root,
     children: [
       {
@@ -21,19 +23,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        Component: Profile,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/add-transaction",
-        Component: AddTransaction,
+        element: (
+          <PrivateRoute>
+            <AddTransaction />
+          </PrivateRoute>
+        ),
       },
       {
-        path: "/my-transaction",
-        Component: MyTransaction,
+        path: "/my-transactions",
+        element: (
+          <PrivateRoute>
+            <MyTransactions />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/reports",
-        Component: Report,
+        element: (
+          <PrivateRoute>
+            <Report />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/auth/login",
@@ -43,6 +61,11 @@ const router = createBrowserRouter([
         path: "/auth/register",
         Component: Register,
       },
+      // {
+      //   path: "/details/:id",
+      //   Component: TransactionDetails,
+      //   loader: () => fetch(`/fake.json`).then((res) => res.json()),
+      // },
     ],
   },
 ]);

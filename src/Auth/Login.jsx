@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { MdRemoveRedEye } from "react-icons/md";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 
 const Login = () => {
@@ -13,6 +13,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { googleLogin, LoginUser } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -46,6 +48,7 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         console.log(result.user);
+        navigate(location.state || "/")
       })
       .catch((err) => {
         console.log(err.message);
@@ -58,6 +61,7 @@ const Login = () => {
     LoginUser(email, password)
       .then((res) => {
         console.log(res.user);
+        navigate(location.state || "/")
       })
       .catch((err) => {
         console.log(err.message);

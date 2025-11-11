@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const MyTransactions = () => {
+  const [transactions, setTransactions] = useState([]);
+  const navigate = useNavigate();
+
   const handleUpdate = (id) => console.log("Update:", id);
   const handleDelete = (id) => console.log("Delete:", id);
-  const handleViewDetails = (id) => console.log("View Details:", id);
-  const [transactions, setTransactions] = useState([]);
+  const handleViewDetails = (id) => {
+    console.log("View Details:", id);
+    navigate(`/details/${id}`);
+  };
 
   useEffect(() => {
     fetch("/fake.json")

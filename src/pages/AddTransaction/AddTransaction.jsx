@@ -24,7 +24,7 @@ const AddTransaction = () => {
     const name = user?.displayName;
     const email = user?.email;
     const date = e.target.date.value;
-    const amount = e.target.amount.value;
+    const amount = parseInt(e.target.amount.value);
     const description = e.target.description.value;
 
     console.log({ type, name, email, category, date, amount, description });

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { MdRemoveRedEye } from "react-icons/md";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
 
@@ -13,6 +13,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { googleLogin, createUser } = useAuth();
+  const navigate = useNavigate();
 
   //email validation
   const handleEmailFieldOnBlur = (e) => {
@@ -42,6 +43,7 @@ const Register = () => {
     googleLogin()
       .then((result) => {
         console.log(result.user);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err.message);
@@ -50,11 +52,14 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createUser(email, password).then(res => {
-      console.log(res.user)
-    }).catch(err => {
-      console.log(err.message)
-    })
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
