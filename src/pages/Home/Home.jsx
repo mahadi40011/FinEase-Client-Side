@@ -1,9 +1,19 @@
-import React from 'react';
+import React from "react";
+import Banner from "../../components/Banner/Banner";
+import Overview from "../../components/Overview/Overview";
+import BudgetingTips from "../../components/BudgetingTips/BudgetingTips";
+import FinancialPlanning from "../../components/FinancialPlanning/FinancialPlanning";
 
 const Home = () => {
   return (
-    <div>
-      <h1 className='text-5xl'>hello i am from home</h1>
+    <div className="container px-6 md:px-12 lg:px-20 py-10 space-y-16">
+      <Banner />
+
+      <Overview />
+
+      <BudgetingTips />
+
+      <FinancialPlanning />
     </div>
   );
 };
