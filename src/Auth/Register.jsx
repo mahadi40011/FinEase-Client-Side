@@ -13,7 +13,7 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
-  const { googleLogin, createUser } = useAuth();
+  const { googleLogin, createUser, updateUserProfile } = useAuth();
   const navigate = useNavigate();
 
   //email validation
@@ -53,26 +53,36 @@ const Register = () => {
         navigate("/");
       })
       .catch((err) => {
-         Swal.fire({
-           position: "center",
-           icon: "error",
-           title: err.message,
-         });
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: err.message,
+        });
       });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const displayName = e.target.name.value;
+    const photoURL = e.target.photoURL.value;
+    console.log({ displayName, photoURL });
+
     createUser(email, password)
       .then(() => {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Register successful",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/");
+        updateUserProfile(displayName, photoURL)
+          .then(() => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Register successful",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         Swal.fire({
