@@ -44,7 +44,7 @@ const AddTransaction = () => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Login successful",
+        title: "Transaction Added Successful",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -97,6 +97,7 @@ const AddTransaction = () => {
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            required
             className="select select-bordered w-full  md:w-2/3 border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
           >
             <option value="" disabled>
@@ -141,6 +142,7 @@ const AddTransaction = () => {
           <input
             type="date"
             name="date"
+            required
             className="input input-bordered w-full md:w-2/3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
           />
         </div>
@@ -151,6 +153,7 @@ const AddTransaction = () => {
           <input
             type="number"
             name="amount"
+            required
             placeholder="Enter amount"
             className="input input-bordered w-full md:w-2/3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
           />

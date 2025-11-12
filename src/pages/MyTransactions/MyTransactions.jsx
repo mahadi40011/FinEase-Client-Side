@@ -11,8 +11,8 @@ const MyTransactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [loadingTransactions, setLoadingTransactions] = useState(true);
 
-  const [sortBy, setSortBy] = useState(""); 
-  const [order, setOrder] = useState("desc"); 
+  const [sortBy, setSortBy] = useState("");
+  const [order, setOrder] = useState("desc");
 
   const navigate = useNavigate();
 
@@ -78,14 +78,14 @@ const MyTransactions = () => {
       <h1 className="text-3xl font-bold mb-8 text-center">All Transactions</h1>
 
       <div className="flex justify-between items-center mb-5">
-        <h2 className="text-xl">{transactions.length} Transactions found</h2>
+        <h2 className="text-xl">({transactions.length}) Transactions found</h2>
 
         {/* Sort Dropdown + Order Toggle */}
         <div className="flex items-center gap-2">
           <select
             value={sortBy}
             onChange={handleSortChange}
-            className="select select-ghost border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-sky-900"
+            className="select select-ghost w-28 sm:w-40 border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-sky-900"
           >
             <option value="">-- Sort By --</option>
             <option value="date">Date</option>
@@ -103,9 +103,7 @@ const MyTransactions = () => {
       </div>
 
       {transactions.length === 0 ? (
-        <p className="text-center mt-10">
-          No transactions found.
-        </p>
+        <p className="text-center mt-10">No transactions found.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {transactions.map((tx) => (
