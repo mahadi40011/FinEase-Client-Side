@@ -61,7 +61,8 @@ const Login = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: err.message,
+          title: "Login Unsuccessful",
+          text: err.message,
         });
       });
   };
@@ -86,7 +87,8 @@ const Login = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: err.message,
+          title: "Login Unsuccessful",
+          text: err.message,
         });
       });
   };

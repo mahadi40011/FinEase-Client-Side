@@ -20,7 +20,7 @@ const Register = () => {
   const handleEmailFieldOnBlur = (e) => {
     const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (e.target.value === "") return setEmailError("");
-    if (!emailValidation.test(email)) {
+    if (!emailValidation.test(e.target.value)) {
       setEmailError("Email invalid");
       return;
     } else return setEmailError("");
@@ -61,40 +61,35 @@ const Register = () => {
       });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (emailError || passwordError) return;
+  if (emailError || passwordError) return;
 
-    const displayName = e.target.name.value;
-    const photoURL = e.target.photoURL.value;
-    console.log({ displayName, photoURL });
+  const displayName = e.target.name.value;
+  const photoURL = e.target.photoURL.value;
 
-    createUser(email, password)
-      .then(() => {
-        updateUserProfile(displayName, photoURL)
-          .then(() => {
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Register successful",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: err.message,
-        });
-      });
-  };
+  try {
+    await createUser(email, password);
+    await updateUserProfile(displayName, photoURL);
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Register successful",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/");
+  } catch (err) {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Registration Unsuccessful",
+      text: err.message,
+    });
+  }
+};
 
   return (
     <div className="flex items-center justify-center min-h-screen ">
