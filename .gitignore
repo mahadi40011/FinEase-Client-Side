@@ -24,4 +24,7 @@ dist-ssr
 *.sw?
 
 .env
-fake.json
+
+firebase.json
+.firebaserc
+.firebase
