@@ -45,7 +45,9 @@ const MyTransactions = () => {
     if (sortBy) fetchTransactions(sortBy, newOrder);
   };
 
-  const handleUpdate = (id) => console.log("Update:", id);
+  const handleUpdate = (id) => {
+    navigate(`/update/${id}`)
+  }
 
   const handleDelete = (id) => {
     Swal.fire({

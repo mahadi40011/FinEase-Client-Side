@@ -10,6 +10,8 @@ import Error404 from "../pages/Error404/Error404";
 import TransactionDetails from "../pages/TransactionDetails/TransactionDetails";
 import PrivateRoute from "./PrivateRoute";
 import MyTransactions from "../pages/MyTransactions/MyTransactions";
+import UpdateTransaction from "../pages/UpdateTransaction/UpdateTransaction";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +70,19 @@ const router = createBrowserRouter([
             <TransactionDetails />
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          fetch(
+            `https://fin-ease-server-alpha.vercel.app/transaction/${params.id}`
+          ),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateTransaction />
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <LoadingSpinner/>,
         loader: ({ params }) =>
           fetch(
             `https://fin-ease-server-alpha.vercel.app/transaction/${params.id}`
