@@ -69,6 +69,8 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (emailError || passwordError) return;
+
     LoginUser(email, password)
       .then(() => {
         Swal.fire({
@@ -149,18 +151,19 @@ const Login = () => {
 
           {/* Forgot Password */}
           <div className="flex items-center justify-between text-sm mt-2 mb-5 ">
-            <Link
-              to="/forgot-password"
-              className="text-sky-600 hover:underline"
-            >
+            <p to="/forgot-password" className="text-sky-600 hover:underline">
               Forgot password?
-            </Link>
+            </p>
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 rounded-lg bg-sky-900 hover:bg-sky-700 transition duration-200 cursor-pointer text-white font-medium"
+            className={`w-full py-2 rounded-lg bg-sky-900 hover:bg-sky-700 transition duration-200 text-white font-medium ${
+              emailError || passwordError
+                ? "cursor-not-allowed"
+                : "cursor-pointer"
+            }`}
           >
             Log In
           </button>

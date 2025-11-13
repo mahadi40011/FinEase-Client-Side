@@ -13,7 +13,7 @@ const Banner = () => {
         </p>
         <Link
           to="/add-transaction"
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full transition"
+          className="bg-sky-900 hover:bg-sky-700 text-white font-semibold px-6 py-2 rounded-md transition"
         >
           Get Started
         </Link>
