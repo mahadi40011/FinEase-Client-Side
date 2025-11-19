@@ -48,6 +48,17 @@ All major functionalities have been manually tested:
 
 ---
 
+## 💻 Installation & Setup
+
+```bash
+git clone https://github.com/mahadi40011/Dragon-News.git
+cd Dragon-News
+npm install
+npm run dev
+```
+
+---
+
 ## 📜 License
 This project is developed for **educational purposes** only.  
 © 2025 FinEase. All rights reserved.
