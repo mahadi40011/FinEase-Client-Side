@@ -51,8 +51,8 @@ All major functionalities have been manually tested:
 ## 💻 Installation & Setup
 
 ```bash
-git clone https://github.com/mahadi40011/Dragon-News.git
-cd Dragon-News
+git clone https://github.com/mahadi40011/FinEase-Client-Side.git
+cd FinEase-Client-Side
 npm install
 npm run dev
 ```
