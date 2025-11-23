@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaYoutube,
   FaXTwitter,
+  FaLinkedin,
 } from "react-icons/fa6";
 
 const Footer = () => {
@@ -53,6 +54,13 @@ const Footer = () => {
         <div>
           <h2 className="text-lg font-semibold mb-3">Follow Us</h2>
           <div className="flex gap-4 mt-2">
+            <Link
+              to="https://www.linkedin.com/in/mehedi-hasan-mahbub/"
+              target="_blank"
+              className="p-2 rounded-full bg-gray-400 hover:bg-red-600 transition"
+            >
+              <FaLinkedin />
+            </Link>
             <Link
               to="https://facebook.com"
               target="_blank"
