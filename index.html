@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html data-theme="light" lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,8 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FinEase</title>
   </head>
-  <body >
+  <body class="bg-app-100">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("theme");
+        const systemDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        const root = document.documentElement;
+
+        if (savedTheme === "dark" || (!savedTheme && systemDark)) {
+          root.classList.add("dark");
+          root.setAttribute("data-theme", "dark");
+        } else {
+          root.classList.remove("dark");
+          root.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
   </body>
 </html>
