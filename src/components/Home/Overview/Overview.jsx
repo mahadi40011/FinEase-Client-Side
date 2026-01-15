@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaWallet, FaArrowDown, FaArrowUp } from "react-icons/fa";
 import useAxios from "../../../hooks/useAxios";
 import useAuth from "../../../hooks/useAuth";
+import Heading from "../../Shared/Heading/Heading";
 
 const Overview = () => {
   const axiosInstance = useAxios();
@@ -33,12 +34,13 @@ const Overview = () => {
 
   return (
     <section className="font-inter text-natural">
-      <div className="text-center font-poppins mb-8">
-        <h2 className="text-2xl  font-semibold">Financial Overview</h2>
-        <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm md:text-base">
+      <Heading
+        title={"Financial Overview"}
+        subtitle={
           "Keep track of your money so your money can take care of you."
-        </p>
-      </div>
+        }
+      />
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
         {/* Total Balance */}
         <div className="bg-app-200 shadow-md rounded-2xl p-8 hover:shadow-lg transition">

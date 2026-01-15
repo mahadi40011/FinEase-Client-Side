@@ -26,17 +26,21 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-16 container mx-auto px-4">
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className=" container mx-auto">
+      <Heading
+        title={"Features"}
+        subtitle={"Everything you need to stay ahead of your spending."}
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {features.map((f, i) => (
           <div
             key={i}
-            className="bg-app-200 text-natural rounded-2xl shadow-sm p-6 hover:shadow-md transition"
+            className="bg-app-200 text-natural sm:flex flex-col justify-center items-center rounded-2xl shadow-sm p-6 hover:shadow-md transition"
           >
             <div className="text-sky-600 mb-4">{f.icon}</div>
             <h3 className="text-xl font-bold mb-2">{f.title}</h3>
-            <p className="text-sm ">{f.desc}</p>
+            <p className="text-sm sm:text-center">{f.desc}</p>
           </div>
         ))}
       </div>

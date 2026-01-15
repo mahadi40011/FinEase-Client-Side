@@ -7,7 +7,7 @@ import Features from "../../components/Home/Features/Features";
 
 const Home = () => {
   return (
-    <div className="container px-6 md:px-12 lg:px-20 py-10 space-y-16">
+    <div className="container px-6 md:px-12 lg:px-20 py-10 space-y-20">
       <Banner />
 
       <Overview />
