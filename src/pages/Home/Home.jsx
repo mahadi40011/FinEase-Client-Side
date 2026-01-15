@@ -4,6 +4,7 @@ import Overview from "../../components/Home/Overview/Overview";
 import BudgetingTips from "../../components/BudgetingTips/BudgetingTips";
 import FinancialPlanning from "../../components/FinancialPlanning/FinancialPlanning";
 import Features from "../../components/Home/Features/Features";
+import Statistics from "../../components/Home/Statistics/Statistics";
 
 const Home = () => {
   return (
@@ -11,6 +12,8 @@ const Home = () => {
       <Banner />
 
       <Overview />
+
+      <Statistics/>
 
       <Features/>
 
