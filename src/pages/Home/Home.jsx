@@ -1,8 +1,6 @@
 import React from "react";
 import Banner from "../../components/Home/Banner/Banner";
 import Overview from "../../components/Home/Overview/Overview";
-import BudgetingTips from "../../components/BudgetingTips/BudgetingTips";
-import FinancialPlanning from "../../components/FinancialPlanning/FinancialPlanning";
 import Features from "../../components/Home/Features/Features";
 import Statistics from "../../components/Home/Statistics/Statistics";
 import Testimonials from "../../components/Home/Testimonials/Testimonials";
@@ -22,10 +20,6 @@ const Home = () => {
       <Testimonials />
       
       <FAQ/>
-
-      <BudgetingTips />
-
-      <FinancialPlanning />
     </div>
   );
 };
