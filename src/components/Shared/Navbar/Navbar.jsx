@@ -39,7 +39,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 w-full bg-app-200 shadow-md">
+    <div className="fixed top-0 z-50 w-full bg-app-200 shadow-md">
       <div className="container ">
         <div className="responsive-container navbar ">
           <div className="navbar-start flex justify-start items-center">

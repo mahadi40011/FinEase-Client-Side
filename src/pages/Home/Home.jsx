@@ -6,6 +6,7 @@ import FinancialPlanning from "../../components/FinancialPlanning/FinancialPlann
 import Features from "../../components/Home/Features/Features";
 import Statistics from "../../components/Home/Statistics/Statistics";
 import Testimonials from "../../components/Home/Testimonials/Testimonials";
+import FAQ from "../../components/Home/FAQ/FAQ";
 
 const Home = () => {
   return (
@@ -18,7 +19,9 @@ const Home = () => {
 
       <Features />
       
-      <Testimonials/>
+      <Testimonials />
+      
+      <FAQ/>
 
       <BudgetingTips />
 
