@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
 import logo from "../../assets/FinEase-logo.png";
 import { Link, NavLink } from "react-router";
 import { FadeLoader } from "react-spinners";
 import useAuth from "../../hooks/useAuth";
 import { HiMenu } from "react-icons/hi";
-import { Settings } from "lucide-react";
+import ThemeToggleButton from "../Buttons/ThemeToggleButton";
 
 const Navbar = () => {
   const { user, loading, logOutUser } = useAuth();
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const navItem = (
     <>
@@ -16,17 +14,19 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li className="font-semibold text-xl">
-        <NavLink to="/profile">Profile</NavLink>
+        <NavLink to="/calculators">Calculators</NavLink>
       </li>
       <li className="font-semibold text-xl">
-        <NavLink to="/add-transaction">Add-Transaction</NavLink>
+        <NavLink to="/resources">Resources</NavLink>
       </li>
       <li className="font-semibold text-xl">
-        <NavLink to="/my-transactions">My-Transactions</NavLink>
+        <NavLink to="/about-us">About-Us</NavLink>
       </li>
-      <li className="font-semibold text-xl">
-        <NavLink to="/reports">Reports</NavLink>
-      </li>
+      {user && (
+        <li className="font-semibold text-xl">
+          <NavLink to="/dashboard">Dashboard</NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -38,18 +38,8 @@ const Navbar = () => {
       });
   };
 
-  useEffect(() => {
-    const html = document.querySelector("html");
-    html.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const handleTheme = (checked) => {
-    setTheme(checked ? "dark" : "light");
-  };
-
   return (
-    <div className=" shadow-sm">
+    <div className="fixed top-0 w-full bg-app-200 shadow-md">
       <div className="container ">
         <div className="responsive-container navbar ">
           <div className="navbar-start flex justify-start items-center">
@@ -76,7 +66,7 @@ const Navbar = () => {
           </div>
           <div className="navbar-end">
             {loading ? (
-              <FadeLoader height={12} radius={5} margin={-3} color="#05545c" />
+              <FadeLoader height={15} margin={3} color="#05545c" />
             ) : user ? (
               <>
                 <div className="dropdown dropdown-end">
@@ -98,15 +88,15 @@ const Navbar = () => {
                       </h1>
                       <p className="text-base">{user?.email}</p>
                     </div>
-                    <div className="flex justify-between items-center gap-1 mb-4">
-                      <span className="font-medium">Dark Mode</span>
-                      <input
-                        onClick={(e) => handleTheme(e.target.checked)}
-                        type="checkbox"
-                        className="toggle toggle-xs toggle-primary"
-                      />
-                      
-                    </div>
+                      <ThemeToggleButton />
+                     
+
+                    <Link
+                      to={"/profile"}
+                      className="btn btn-sm sm:btn-md bg-sky-900 border-none text-white font-base sm:font-semibold text-lg sm:text-xl"
+                    >
+                      Profile
+                    </Link>
                     <button
                       onClick={handleLogOut}
                       className="btn btn-sm sm:btn-md bg-sky-900 border-none text-white font-base sm:font-semibold text-lg sm:text-xl"
@@ -117,20 +107,12 @@ const Navbar = () => {
                 </div>
               </>
             ) : (
-              <>
-                <Link
-                  to={"/auth/login"}
-                  className="btn btn-sm sm:btn-md bg-sky-900 hover:bg-sky-700 transition duration-200 border-none text-white font-base sm:font-semibold text-lg sm:text-xl ml-2"
-                >
-                  Login
-                </Link>
-                <Link
-                  to={"/auth/register"}
-                  className="btn btn-sm sm:btn-md bg-sky-900 hover:bg-sky-700 transition duration-200 border-none text-white font-base sm:font-semibold text-lg sm:text-xl ml-2"
-                >
-                  Sign Up
-                </Link>
-              </>
+              <Link
+                to={"/auth/login"}
+                className="btn btn-sm sm:btn-md bg-sky-900 hover:bg-sky-700 transition duration-200 border-none text-white font-base sm:font-semibold text-lg sm:text-xl ml-2"
+              >
+                Login
+              </Link>
             )}
           </div>
         </div>
