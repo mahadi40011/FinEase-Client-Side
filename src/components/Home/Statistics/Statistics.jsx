@@ -5,7 +5,7 @@ import Heading from "../../Shared/Heading/Heading";
 
 const Statistics = () => {
   return (
-    <section className="text-natural font-poppins container mx-auto px-4">
+    <section className="text-natural font-poppins container mx-auto">
       <Heading
         title={"Our Growth"}
         subtitle={"Trusted by thousands of users worldwide."}
