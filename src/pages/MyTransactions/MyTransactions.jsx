@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner/LoadingSpinner";
 import Swal from "sweetalert2";
 
 const MyTransactions = () => {

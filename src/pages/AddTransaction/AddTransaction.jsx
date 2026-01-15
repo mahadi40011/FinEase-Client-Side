@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner/LoadingSpinner";
 import useAxios from "../../hooks/useAxios";
 import Swal from "sweetalert2";
 

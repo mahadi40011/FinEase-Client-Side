@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner/LoadingSpinner";
 import { ArrowUpCircle, ArrowDownCircle, Calendar, Tag } from "lucide-react";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";

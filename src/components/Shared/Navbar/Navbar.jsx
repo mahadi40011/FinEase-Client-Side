@@ -1,9 +1,9 @@
-import logo from "../../assets/FinEase-logo.png";
+import logo from "../../../assets/FinEase-logo.png";
 import { Link, NavLink } from "react-router";
 import { FadeLoader } from "react-spinners";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import { HiMenu } from "react-icons/hi";
-import ThemeToggleButton from "../Buttons/ThemeToggleButton";
+import ThemeToggleButton from "../../Buttons/ThemeToggleButton";
 
 const Navbar = () => {
   const { user, loading, logOutUser } = useAuth();

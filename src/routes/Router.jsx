@@ -11,7 +11,7 @@ import TransactionDetails from "../pages/TransactionDetails/TransactionDetails";
 import PrivateRoute from "./PrivateRoute";
 import MyTransactions from "../pages/MyTransactions/MyTransactions";
 import UpdateTransaction from "../pages/UpdateTransaction/UpdateTransaction";
-import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../components/Shared/LoadingSpinner/LoadingSpinner";
 
 const router = createBrowserRouter([
   {

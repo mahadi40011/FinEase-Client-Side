@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner/LoadingSpinner";
 
 const Report = () => {
   const axiosInstance = useAxios();
