@@ -6,7 +6,14 @@ import EMICalc from "../../components/Calculator/EMICalc";
 import EmergencyFundCalc from "../../components/Calculator/EmergencyFundCalc";
 
 const Calculator = () => {
-  const [activeTab, setActiveTab] = useState("savings");
+  const [activeTab, setActiveTab] = useState(() => {
+    return localStorage.getItem("activeCalcTab") || "savings";
+  });
+
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    localStorage.setItem("activeCalcTab", tabId);
+  };
 
   return (
     <section className="container mx-auto text-natural px-4 pt-10 sm:pt-16 font-poppins ">
@@ -16,7 +23,7 @@ const Calculator = () => {
       />
 
       {/* Tab Switcher */}
-      <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+      <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 pt-5">
         {[
           {
             id: "savings",
@@ -32,11 +39,11 @@ const Calculator = () => {
         ].map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => handleTabChange(tab.id)}
             className={`btn btn-sm md:btn-md lg:btn-lg rounded-xl flex items-center gap-2 transition-all ${
               activeTab === tab.id
                 ? "bg-sky-700 text-white border-none"
-                : "bg-app-200 text-gray-600 border-none hover:bg-gray-300 dark:hover:text-gray-700"
+                : "bg-app-200 text-natural border-none hover:bg-gray-300 dark:hover:text-gray-700"
             }`}
           >
             {tab.icon} {tab.label}
