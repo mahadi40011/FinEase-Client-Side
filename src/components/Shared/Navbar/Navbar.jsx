@@ -10,20 +10,20 @@ const Navbar = () => {
 
   const navItem = (
     <>
-      <li className="font-semibold text-xl">
+      <li className="font-semibold font-inter text-lg xl:text-xl">
         <NavLink to="/">Home</NavLink>
       </li>
-      <li className="font-semibold text-xl">
+      <li className="font-semibold font-inter text-lg xl:text-xl">
         <NavLink to="/calculators">Calculators</NavLink>
       </li>
-      <li className="font-semibold text-xl">
+      <li className="font-semibold font-inter text-lg xl:text-xl">
         <NavLink to="/resources">Resources</NavLink>
       </li>
-      <li className="font-semibold text-xl">
+      <li className="font-semibold font-inter text-lg xl:text-xl">
         <NavLink to="/about-us">About-Us</NavLink>
       </li>
       {user && (
-        <li className="font-semibold text-xl">
+        <li className="font-semibold font-inter text-lg xl:text-xl">
           <NavLink to="/dashboard">Dashboard</NavLink>
         </li>
       )}
@@ -39,7 +39,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 z-50 w-full bg-app-200 font-poppins shadow-md">
+    <div className="fixed top-0 z-50 w-full bg-app-200 font-poppins text-natural shadow-md">
       <div className="container ">
         <div className="responsive-container navbar ">
           <div className="navbar-start flex justify-start items-center">
@@ -56,7 +56,7 @@ const Navbar = () => {
             </div>
             <div className="flex items-center gap-0.5">
               <img className="w-10 sm:w-14 " src={logo} alt="" />
-              <h1 className="text-4xl font-bold bg-linear-to-r from-sky-900 to-blue-600 bg-clip-text text-transparent italic">
+              <h1 className="text-4xl font-bold bg-linear-to-r from-sky-900 to-blue-600 bg-clip-text text-transparent italic hidden sm:block">
                 FinEase
               </h1>
             </div>

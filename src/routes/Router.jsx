@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 import MyTransactions from "../pages/MyTransactions/MyTransactions";
 import UpdateTransaction from "../pages/UpdateTransaction/UpdateTransaction";
 import LoadingSpinner from "../components/Shared/LoadingSpinner/LoadingSpinner";
+import Calculators from "../pages/Calculators/Calculators";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,12 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/calculators",
+        element: (
+            <Calculators />
+        ),
       },
       {
         path: "/profile",
@@ -82,7 +89,7 @@ const router = createBrowserRouter([
             <UpdateTransaction />
           </PrivateRoute>
         ),
-        hydrateFallbackElement: <LoadingSpinner/>,
+        hydrateFallbackElement: <LoadingSpinner />,
         loader: ({ params }) =>
           fetch(
             `https://fin-ease-server-alpha.vercel.app/transaction/${params.id}`
