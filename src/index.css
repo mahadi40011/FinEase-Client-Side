@@ -24,9 +24,9 @@
 }
 
 .dark {
-  --bg-app-100: rgb(36, 38, 45);
-  --bg-app-200: rgb(22, 25, 37);
-  --text-natural: rgb(214, 212, 212);
+  --bg-app-100: #24262d;
+  --bg-app-200: #161925;
+  --text-natural: #d6d4d4;
 }
 
 .container {
@@ -38,5 +38,5 @@
 }
 
 .navbar a.active {
-  @apply border-b-2 md:border-b-3 pb-2 border-sky-900 text-sky-900 font-bold;
+  @apply border-b-2 md:border-b-3 pb-1 border-sky-600 text-sky-600 font-bold;
 }
