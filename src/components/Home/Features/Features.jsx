@@ -36,7 +36,7 @@ const Features = () => {
         {features.map((f, i) => (
           <div
             key={i}
-            className="bg-app-200 text-natural sm:flex flex-col justify-center items-center rounded-2xl shadow-sm p-6 hover:shadow-md transition"
+            className="bg-app-200 text-natural sm:flex flex-col justify-center items-center rounded-2xl shadow-sm p-6 hover:shadow-md hover:scale-103 transition-transform duration-300"
           >
             <div className="text-sky-600 mb-4">{f.icon}</div>
             <h3 className="text-xl font-bold mb-2">{f.title}</h3>
