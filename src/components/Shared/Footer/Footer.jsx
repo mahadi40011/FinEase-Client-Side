@@ -108,7 +108,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Copyright Area */}
-        <div className="mt-12">
+        <div className="mt-12 pr-7 sm:pr-10 md:pr-12 lg:pr-16 xl:pr-25 2xl:pr-30">
           <hr className="border-black/10 dark:border-white/10" />
           <p className="text-center text-sm text-gray-500 py-2">
             © {new Date().getFullYear()} FinEase. Built with ❤️ in Sylhet.

@@ -13,6 +13,7 @@ import MyTransactions from "../pages/MyTransactions/MyTransactions";
 import UpdateTransaction from "../pages/UpdateTransaction/UpdateTransaction";
 import LoadingSpinner from "../components/Shared/LoadingSpinner/LoadingSpinner";
 import Calculators from "../pages/Calculators/Calculators";
+import Resources from "../pages/Resources/Resources";
 
 const router = createBrowserRouter([
   {
@@ -26,9 +27,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/calculators",
-        element: (
-            <Calculators />
-        ),
+        element: <Calculators />,
+      },
+      {
+        path: "/resources",
+        element: <Resources />,
       },
       {
         path: "/profile",
