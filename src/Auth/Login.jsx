@@ -94,9 +94,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[89vh]">
+    <div className=" text-natural font-poppins ">
       <title>FinEase - Login</title>
-      <div className=" p-8 rounded-2xl shadow-lg w-full max-w-md">
+      <div className="bg-app-200 p-8 rounded-2xl shadow-lg w-full max-w-md mx-auto mt-16">
         <h2 className="sm:text-3xl text-2xl font-bold text-center mb-8">
           Please Login
         </h2>
@@ -104,9 +104,9 @@ const Login = () => {
         {/* google Login */}
         <button
           onClick={handleGoogleLogin}
-          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300  transition w-full cursor-pointer text-center"
+          className="flex items-center justify-center gap-2 px-4 py-3 mb-4 rounded-lg bg-app-100 w-full cursor-pointer text-center text-lg"
         >
-          <FcGoogle className="text-xl" /> <span> Login with Google</span>
+          <FcGoogle size={28} className="text-xl" /> <span> Login with Google</span>
         </button>
 
         <div className="text-center  text-md mb-4">— or login with email —</div>
@@ -124,7 +124,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             required
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
+            className="w-full px-4 py-3 rounded-lg bg-app-100 focus:outline-none focus:ring-2 focus:ring-sky-700"
           />
           <span className="text-red-500">{emailError}</span>
 
@@ -140,11 +140,11 @@ const Login = () => {
               onChange={handlePasswordValidation}
               placeholder="Enter your password"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
+              className="w-full px-4 py-3 rounded-lg bg-app-100 focus:outline-none focus:ring-2 focus:ring-sky-700"
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute top-9 right-3 cursor-pointer"
+              className="absolute top-10 right-3 cursor-pointer"
             >
               {showPassword ? <FaEyeSlash /> : <MdRemoveRedEye />}
             </span>
@@ -153,7 +153,7 @@ const Login = () => {
 
           {/* Forgot Password */}
           <div className="flex items-center justify-between text-sm mt-2 mb-5 ">
-            <p to="/forgot-password" className="text-sky-600 hover:underline">
+            <p to="/forgot-password" className="text-sky-600 hover:underline cursor-pointer">
               Forgot password?
             </p>
           </div>
@@ -161,7 +161,7 @@ const Login = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className={`w-full py-2 rounded-lg bg-sky-900 hover:bg-sky-700 transition duration-200 text-white font-medium ${
+            className={`w-full py-3 text-lg rounded-lg bg-sky-700 hover:bg-sky-900 transition duration-200 text-white font-medium ${
               emailError || passwordError
                 ? "cursor-not-allowed"
                 : "cursor-pointer"
