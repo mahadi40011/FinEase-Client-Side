@@ -61,40 +61,40 @@ const Register = () => {
       });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (emailError || passwordError) return;
+    if (emailError || passwordError) return;
 
-  const displayName = e.target.name.value;
-  const photoURL = e.target.photoURL.value;
+    const displayName = e.target.name.value;
+    const photoURL = e.target.photoURL.value;
 
-  try {
-    await createUser(email, password);
-    await updateUserProfile(displayName, photoURL);
+    try {
+      await createUser(email, password);
+      await updateUserProfile(displayName, photoURL);
 
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Register successful",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    navigate("/");
-  } catch (err) {
-    Swal.fire({
-      position: "center",
-      icon: "error",
-      title: "Registration Unsuccessful",
-      text: err.message,
-    });
-  }
-};
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Register successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    } catch (err) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Registration Unsuccessful",
+        text: err.message,
+      });
+    }
+  };
 
   return (
-    <div className="flex items-center justify-center min-h-screen ">
+    <div className=" text-natural font-poppins ">
       <title>FinEase - Register</title>
-      <div className=" p-8 rounded-2xl shadow-lg w-full max-w-md">
+      <div className="bg-app-200 p-8 rounded-2xl shadow-lg w-full max-w-xl mx-auto mt-16">
         <h2 className="text-3xl font-bold text-center  mb-6">
           Create Your Account
         </h2>
@@ -102,9 +102,10 @@ const handleSubmit = async (e) => {
         {/* google Login */}
         <button
           onClick={handleGoogleLogin}
-          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 transition w-full text-center cursor-pointer"
+          className="flex items-center justify-center gap-2 px-4 py-3 mb-6 rounded-lg bg-app-100 w-full cursor-pointer text-center text-lg"
         >
-          <FcGoogle className="text-xl" /> <span> Continue with Google</span>
+          <FcGoogle size={28} className="text-xl" />{" "}
+          <span> Login with Google</span>
         </button>
 
         <div className="text-center  text-md mb-4">
@@ -113,17 +114,17 @@ const handleSubmit = async (e) => {
 
         <form onSubmit={handleSubmit}>
           {/* Name */}
-          <label className="block text-sm font-medium  mt-5 mb-1">Name</label>
+          <label className="block text-lg font-medium  mt-5 mb-1">Name</label>
           <input
             type="text"
             name="name"
             placeholder="Your name"
             required
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
+            className="w-full px-4 py-3 rounded-lg bg-app-100 focus:outline-none focus:ring-2 focus:ring-sky-700"
           />
 
           {/* Email */}
-          <label className="block text-sm font-medium  mt-5 mb-1">Email</label>
+          <label className="block text-lg font-medium  mt-5 mb-1">Email</label>
           <input
             type="email"
             placeholder="Enter your email"
@@ -131,12 +132,12 @@ const handleSubmit = async (e) => {
             onChange={(e) => setEmail(e.target.value)}
             onBlur={handleEmailFieldOnBlur}
             required
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
+            className="w-full px-4 py-3 rounded-lg bg-app-100 focus:outline-none focus:ring-2 focus:ring-sky-700"
           />
           <span className="text-red-500">{emailError}</span>
 
           {/* Photo URL */}
-          <label className="block text-sm font-medium  mt-5 mb-1">
+          <label className="block text-lg font-medium  mt-5 mb-1">
             Photo URL
           </label>
           <input
@@ -144,12 +145,12 @@ const handleSubmit = async (e) => {
             name="photoURL"
             placeholder="Photo URL"
             required
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
+            className="w-full px-4 py-3 rounded-lg bg-app-100 focus:outline-none focus:ring-2 focus:ring-sky-700"
           />
 
           {/* Password */}
           <div className="relative">
-            <label className="block text-sm font-medium  mt-5 mb-1">
+            <label className="block text-lg font-medium  mt-5 mb-1">
               Password
             </label>
             <input
@@ -159,11 +160,11 @@ const handleSubmit = async (e) => {
               onChange={handlePasswordValidation}
               placeholder="Enter your password"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
+              className="w-full px-4 py-3 rounded-lg bg-app-100 focus:outline-none focus:ring-2 focus:ring-sky-700"
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute top-9 right-3 cursor-pointer"
+              className="absolute top-12 text-xl right-3 cursor-pointer"
             >
               {showPassword ? <FaEyeSlash /> : <MdRemoveRedEye />}
             </span>
@@ -172,7 +173,7 @@ const handleSubmit = async (e) => {
 
           <button
             type="submit"
-            className={`w-full py-2 mt-7 rounded-lg text-white bg-sky-900 hover:bg-sky-700 transition duration-200 font-medium ${
+            className={`w-full py-3 mt-7 text-lg rounded-lg bg-sky-700 hover:bg-sky-900 transition duration-200 text-white font-medium ${
               emailError || passwordError
                 ? "cursor-not-allowed"
                 : "cursor-pointer"
