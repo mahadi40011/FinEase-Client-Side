@@ -1,10 +1,9 @@
 import React from "react";
-import Heading from "../../components/Shared/Heading/Heading";
-import { Target, Users, ShieldCheck, Zap, Heart, Award } from "lucide-react";
 import HeroSection from "../../components/AboutUs/HeroSection";
 import OurMission from "../../components/AboutUs/OurMission";
 import CoreValues from "../../components/AboutUs/CoreValues";
 import MeetTheVisionary from "../../components/AboutUs/MeetTheVisionary";
+import ContactUs from "../ContactUs/ContactUs";
 
 const AboutUs = () => {
   return (
@@ -16,6 +15,8 @@ const AboutUs = () => {
       <CoreValues />
 
       <MeetTheVisionary />
+
+      <ContactUs />
     </div>
   );
 };
