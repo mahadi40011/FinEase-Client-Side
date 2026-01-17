@@ -40,31 +40,6 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "/profile",
-        element: (
-          <PrivateRoute>
-            <Profile />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/add-transaction",
-        element: (
-          <PrivateRoute>
-            <AddTransaction />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-transactions",
-        element: (
-          <PrivateRoute>
-            <MyTransactions />
-          </PrivateRoute>
-        ),
-      },
-
-      {
         path: "/auth/login",
         Component: Login,
       },
@@ -72,8 +47,50 @@ const router = createBrowserRouter([
         path: "/auth/register",
         Component: Register,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
       {
-        path: "/details/:id",
+        path: "reports",
+        element: (
+          <PrivateRoute>
+            <Report />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-transaction",
+        element: (
+          <PrivateRoute>
+            <AddTransaction />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-transactions",
+        element: (
+          <PrivateRoute>
+            <MyTransactions />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "details/:id",
         element: (
           <PrivateRoute>
             <TransactionDetails />
@@ -85,7 +102,7 @@ const router = createBrowserRouter([
           ),
       },
       {
-        path: "/update/:id",
+        path: "update/:id",
         element: (
           <PrivateRoute>
             <UpdateTransaction />
@@ -98,11 +115,6 @@ const router = createBrowserRouter([
           ),
       },
     ],
-  },
-  {
-    path: "/dashboard",
-    element: <DashboardLayout />,
-    children: [],
   },
 ]);
 
