@@ -4,6 +4,7 @@ import { Target, Users, ShieldCheck, Zap, Heart, Award } from "lucide-react";
 import HeroSection from "../../components/AboutUs/HeroSection";
 import OurMission from "../../components/AboutUs/OurMission";
 import CoreValues from "../../components/AboutUs/CoreValues";
+import MeetTheVisionary from "../../components/AboutUs/MeetTheVisionary";
 
 const AboutUs = () => {
   return (
@@ -13,6 +14,8 @@ const AboutUs = () => {
       <OurMission />
 
       <CoreValues />
+
+      <MeetTheVisionary />
     </div>
   );
 };
