@@ -8,10 +8,10 @@ const TransactionSkeleton = ({ length }) => {
       {numberOfCard.map((n) => (
         <div
           key={n}
-          className="bg-white dark:bg-gray-800 p-5 lg:px-8 lg:py-4 rounded-2xl border border-black/5 lg:grid lg:grid-cols-4 lg:items-center flex flex-col gap-4 animate-pulse"
+          className="bg-white dark:bg-gray-800 p-5 lg:px-8 lg:py-4 rounded-2xl border border-black/5 grid grid-cols-2 gap-y-5 lg:grid-cols-4 lg:items-center animate-pulse"
         >
           {/* Skeleton Type & Date */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center lg:justify-start gap-4">
             <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-2xl"></div>
             <div className="space-y-2">
               <div className="h-4 w-16 bg-gray-200 dark:bg-gray-700 rounded"></div>

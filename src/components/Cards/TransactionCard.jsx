@@ -36,7 +36,7 @@ const TransactionCard = ({ transactions, setTransactions }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4">
+    <div className="grid grid-cols-1 gap-2">
       {transactions.map((tx) => (
         <div
           key={tx._id}
@@ -85,7 +85,7 @@ const TransactionCard = ({ transactions, setTransactions }) => {
           <div className="flex justify-center gap-2">
             <button
               onClick={() =>
-                navigate(`/dashboard/my-transactions/details/${tx._id}`)
+                navigate(`/dashboard/my-transaction/details/${tx._id}`)
               }
               className="p-2 hover:bg-sky-50 text-sky-600 rounded-xl transition"
               title="View"
@@ -93,7 +93,9 @@ const TransactionCard = ({ transactions, setTransactions }) => {
               <Eye size={20} />
             </button>
             <button
-              onClick={() => navigate(`/update/${tx._id}`)}
+              onClick={() =>
+                navigate(`/dashboard/my-transaction/update/${tx._id}`)
+              }
               className="p-2 hover:bg-amber-50 text-amber-600 rounded-xl transition"
               title="Edit"
             >
