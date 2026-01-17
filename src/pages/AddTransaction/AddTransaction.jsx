@@ -221,21 +221,21 @@ const AddTransaction = () => {
             </div>
           </div>
 
-          {/* Description - Full Width */}
+          {/* Description  */}
           <div className="space-y-1">
             <label className="text-sm font-bold text-natural flex items-center gap-2 ml-1">
               <FileText size={14} /> Detailed Description
             </label>
             <textarea
               name="description"
-              rows="2"
+              rows="5"
               placeholder="Add some notes about this transaction..."
               className="w-full py-3 px-4 bg-app-input border border-gray-200 dark:border-gray-500 rounded-xl text-lg focus:outline-none focus:ring-1 focus:ring-sky-700"
             ></textarea>
           </div>
 
           {/* Recurring Option */}
-          <div className="flex items-center gap-3 ">
+          <div className="flex items-center gap-3 ml-1">
             <input
               name="recurring"
               type="checkbox"

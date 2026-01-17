@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner/LoadingSpinner";
-import Swal from "sweetalert2";
+import { Filter, ChevronDown, ChevronUp, FolderOpen, Plus } from "lucide-react";
+import TransactionSkeleton from "../../components/Skeleton/TransactionSkeleton";
+import TransactionCard from "../../components/Cards/TransactionCard";
 
 const MyTransactions = () => {
   const { user, loading } = useAuth();
   const axiosInstance = useAxios();
   const [transactions, setTransactions] = useState([]);
   const [loadingTransactions, setLoadingTransactions] = useState(true);
-
   const [sortBy, setSortBy] = useState("");
   const [order, setOrder] = useState("desc");
 
-  const navigate = useNavigate();
-
   const fetchTransactions = (sortField = "", sortOrder = "desc") => {
     if (!user?.email) return;
-
     setLoadingTransactions(true);
     let url = `/my-transactions?email=${user.email}`;
     if (sortField) url += `&sortBy=${sortField}&order=${sortOrder}`;
@@ -30,7 +28,7 @@ const MyTransactions = () => {
   };
 
   useEffect(() => {
-    fetchTransactions(); // initial load
+    fetchTransactions();
   }, [user]);
 
   const handleSortChange = (e) => {
@@ -45,121 +43,123 @@ const MyTransactions = () => {
     if (sortBy) fetchTransactions(sortBy, newOrder);
   };
 
-  const handleUpdate = (id) => {
-    navigate(`/update/${id}`)
-  }
+  if (loading) return <LoadingSpinner />;
 
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosInstance.delete(`/transaction/${id}`).then(() => {
-          const remaining = transactions.filter((tx) => tx._id !== id);
-          setTransactions(remaining);
-          Swal.fire("Deleted!", "Transaction has been deleted.", "success");
-        });
-      }
-    });
-  };
-
-  const handleViewDetails = (id) => {
-    navigate(`/dashboard/my-transactions/details/${id}`);
-  };
-
-  if (loading || loadingTransactions) return <LoadingSpinner />;
+  // calculation
+  const totalIncome = transactions
+    .filter((t) => t.type === "Income")
+    .reduce((sum, t) => sum + t.amount, 0);
+  const totalExpense = transactions
+    .filter((t) => t.type === "Expense")
+    .reduce((sum, t) => sum + t.amount, 0);
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-8 text-center">All Transactions</h1>
+    <div className="w-full mx-auto pt-4 md:pt-8 text-natural font-poppins">
+      {/* 1. Header & Quick Stats */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+        <div>
+          <h1 className="text-3xl font-extrabold ">Financial Ledger</h1>
+          <p className="text-gray-500 mt-1">
+            Review and manage your transaction history
+          </p>
+        </div>
 
-      <div className="flex justify-between items-center mb-5">
-        <h2 className="text-xl">({transactions.length}) Transactions found</h2>
+        <div className="flex gap-4 w-full md:w-auto">
+          <div className="flex-1 md:flex-none bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-2xl border border-emerald-100 dark:border-emerald-900">
+            <p className=" text-xs sm:text-xs text-emerald-600 dark:text-emerald-400 font-bold uppercase sm:tracking-wider font-inter">
+              Total Income
+            </p>
+            <p className="text-lg sm:text-xl font-black text-emerald-700 dark:text-emerald-300">
+              ৳{totalIncome.toLocaleString()}
+            </p>
+          </div>
+          <div className="flex-1 md:flex-none bg-red-50 dark:bg-red-900/20 p-4 rounded-2xl border border-red-100 dark:border-red-800">
+            <p className="text-xs sm:text-xs text-red-600 dark:text-red-400 font-bold uppercase sm:tracking-wider font-inter">
+              Total Expense
+            </p>
+            <p className="text-lg sm:text-xl font-black text-red-700 dark:text-red-300">
+              ৳{totalExpense.toLocaleString()}
+            </p>
+          </div>
+        </div>
+      </div>
 
-        {/* Sort Dropdown + Order Toggle */}
-        <div className="flex items-center gap-2">
+      {/* 2. Controls */}
+      <div className="bg-app-200 sticky top-17 sm:top-20 z-10 p-4 rounded-xl shadow-xs flex flex-wrap justify-between items-center gap-4 mb-8">
+        <div className="flex items-center gap-2 text-natural">
+          <Filter size={18} />
+          <span className="font-semibold">
+            {transactions.length} Transactions
+          </span>
+        </div>
+
+        <div className="flex items-center gap-3 w-full sm:w-64">
           <select
             value={sortBy}
             onChange={handleSortChange}
-            className="select select-ghost w-28 sm:w-40 border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-sky-900"
+            className="w-full py-2 px-4 bg-app-input border border-gray-200 dark:border-gray-500 rounded-xl text-lg focus:outline-none focus:ring-1 focus:ring-sky-700"
           >
-            <option value="">-- Sort By --</option>
+            <option value="">Sort By</option>
             <option value="date">Date</option>
             <option value="amount">Amount</option>
           </select>
           {sortBy && (
             <button
               onClick={toggleOrder}
-              className="px-2 py-1 bg-sky-900 text-white rounded hover:bg-sky-700 transition"
+              className="p-2 bg-sky-900 text-white rounded-xl hover:bg-sky-800 transition shadow-md"
             >
-              {order === "desc" ? "↓" : "↑"}
+              {order === "desc" ? (
+                <ChevronDown size={18} />
+              ) : (
+                <ChevronUp size={18} />
+              )}
             </button>
           )}
         </div>
       </div>
 
+      {/* 3. Transactions Table/Cards */}
       {transactions.length === 0 ? (
-        <p className="text-center mt-10">No transactions found.</p>
+        <div className="flex flex-col items-center justify-center py-20 px-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700  transition-all">
+          <div className="bg-app-100 p-6 rounded-full shadow-sm mb-6 border border-gray-100 dark:border-gray-700 ">
+            <FolderOpen size={48} className="text-natural" />
+          </div>
+
+          <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200 mb-2">
+            No Transactions Yet
+          </h3>
+          <p className="text-gray-500 dark:text-gray-400 text-center max-w-xs mb-8 italic">
+            It looks like you haven't added any financial records. Start
+            tracking your money today!
+          </p>
+
+          <Link
+            to="/dashboard/add-transaction"
+            className="btn bg-sky-700 hover:bg-sky-900 text-white border-none px-8 rounded-2xl flex items-center gap-2 transition-all transform hover:scale-105"
+          >
+            <Plus size={18} />
+            Add First Transaction
+          </Link>
+        </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {transactions.map((tx) => (
-            <div
-              key={tx._id}
-              className="shadow-lg rounded-2xl p-6 border border-gray-200 hover:shadow-2xl transition duration-300"
-            >
-              <div className="flex justify-between items-center mb-4">
-                <span
-                  className={`px-3 py-1 rounded-full text-white font-semibold text-sm ${
-                    tx.type === "Income" ? "bg-green-500" : "bg-red-500"
-                  }`}
-                >
-                  {tx.type}
-                </span>
-                <span className="text-gray-500 font-medium text-sm">
-                  📅 {tx.date ? new Date(tx.date).toLocaleDateString() : "N/A"}
-                </span>
-              </div>
+        <div className="grid grid-cols-1 gap-2">
+          {/* Desktop Table Header (Hidden on Mobile) */}
+          <div className="hidden lg:grid grid-cols-4 px-8 py-4 bg-white dark:bg-gray-700 rounded-2xl text-sm font-bold text-natural">
+            <span>Type & Date</span>
+            <span className="text-center">Category</span>
+            <span className="text-center">Amount</span>
+            <span className="text-center">Actions</span>
+          </div>
 
-              <div className="flex justify-between items-center mb-4">
-                <p className="text-lg font-medium">Category:</p>
-                <p className="font-bold text-lg">{tx.category}</p>
-              </div>
-
-              <div className="flex justify-between items-center mb-4">
-                <p className="text-lg font-medium">Amount:</p>
-                <p className="font-bold text-lg">
-                  {tx.amount.toLocaleString()}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 mt-2">
-                <button
-                  onClick={() => handleUpdate(tx._id)}
-                  className="px-3 py-1 rounded text-white text-sm font-medium bg-sky-900 hover:bg-sky-700 transition duration-200"
-                >
-                  Update
-                </button>
-                <button
-                  onClick={() => handleDelete(tx._id)}
-                  className="px-3 py-1 rounded text-white text-sm font-medium bg-sky-900 hover:bg-sky-700 transition duration-200"
-                >
-                  Delete
-                </button>
-                <button
-                  onClick={() => handleViewDetails(tx._id)}
-                  className="px-3 py-1 rounded text-white text-sm font-medium bg-sky-900 hover:bg-sky-700 transition duration-200"
-                >
-                  View Details
-                </button>
-              </div>
-            </div>
-          ))}
+          {/* Transaction Items */}
+          {loadingTransactions ? (
+            <TransactionSkeleton length={transactions.length} />
+          ) : (
+            <TransactionCard
+              transactions={transactions}
+              setTransactions={setTransactions}
+            />
+          )}
         </div>
       )}
     </div>
