@@ -14,18 +14,21 @@
   --font-inter: "Inter", sans-serif;
   --color-app-100: var(--bg-app-100);
   --color-app-200: var(--bg-app-200);
+  --color-app-input: var(--bg-app-input);
   --color-natural: var(--text-natural);
 }
 
 :root {
   --bg-app-100: #e9e6e6;
   --bg-app-200: #ffffff;
+  --bg-app-input: #f3f4f6;
   --text-natural: #1f2937;
 }
 
 .dark {
   --bg-app-100: #24262d;
   --bg-app-200: #161925;
+  --bg-app-input: #323842;
   --text-natural: #d6d4d4;
 }
 

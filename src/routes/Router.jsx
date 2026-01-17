@@ -90,7 +90,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "details/:id",
+        path: "my-transactions/details/:id",
         element: (
           <PrivateRoute>
             <TransactionDetails />

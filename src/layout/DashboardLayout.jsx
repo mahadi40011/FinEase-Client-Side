@@ -14,8 +14,10 @@ const DashboardLayout = () => {
 
         <main className="flex-1 md:ml-64 mt-17 sm:mt-20 min-h-screen bg-app-100">
           <div className="flex flex-col min-h-screen">
-            <div className="flex-1 p-5 bg-amber-600  max-w-7xl mx-auto">
-              <Outlet />
+            <div className="flex-1 pt-5 px-5">
+              <div className="max-w-7xl mx-auto">
+                <Outlet />
+              </div>
             </div>
 
             <footer>

@@ -70,7 +70,7 @@ const MyTransactions = () => {
   };
 
   const handleViewDetails = (id) => {
-    navigate(`/details/${id}`);
+    navigate(`/dashboard/my-transactions/details/${id}`);
   };
 
   if (loading || loadingTransactions) return <LoadingSpinner />;
