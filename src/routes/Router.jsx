@@ -14,6 +14,7 @@ import UpdateTransaction from "../pages/UpdateTransaction/UpdateTransaction";
 import LoadingSpinner from "../components/Shared/LoadingSpinner/LoadingSpinner";
 import Calculators from "../pages/Calculators/Calculators";
 import Resources from "../pages/Resources/Resources";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/resources",
         element: <Resources />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
       {
         path: "/profile",
