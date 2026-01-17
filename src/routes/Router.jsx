@@ -15,6 +15,7 @@ import LoadingSpinner from "../components/Shared/LoadingSpinner/LoadingSpinner";
 import Calculators from "../pages/Calculators/Calculators";
 import Resources from "../pages/Resources/Resources";
 import AboutUs from "../pages/AboutUs/AboutUs";
+import DashboardLayout from "../layout/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -62,14 +63,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/reports",
-        element: (
-          <PrivateRoute>
-            <Report />
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "/auth/login",
         Component: Login,
@@ -104,6 +98,11 @@ const router = createBrowserRouter([
           ),
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [],
   },
 ]);
 
