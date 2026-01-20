@@ -1,27 +1,30 @@
-# 💻 FinEase – Personal Finance Management Web App
+# FinEase – Personal Finance Management Web App
 
-## 📝 Project Overview
+## Project Overview
 FinEase is a modern personal finance management web application built with React, Tailwind CSS, and Firebase.  
 It allows users to record their income and expenses, view transaction history, and analyze their monthly performance through visual charts.  
 The project follows the assignment requirements, excluding optional parts.
 
----
+## 🔗 Live Demo
 
-## 🚀 Live Demo
-🔗 [Visit Live Site](https://fin-ease.web.app)
+You can explore the live version of the application here:  
+ **[Live Website](https://fin-ease.web.app)** , 
+ **[Backend Repo](https://github.com/mahadi40011/FinEase-Server-Side)**
 
 ---
 
 ## 🧠 Features
-- Firebase Authentication (Register / Login / Logout)  
-- Add, Update, and Delete Transactions  
-- Categorize Income and Expense  
-- Dynamic Dashboard using Recharts  
-- Responsive UI with Tailwind + DaisyUI  
-- SweetAlert2 Popups  
-- Secure API calls with Axios  
-- React Router Navigation  
-- React Spinners Loading Animation
+- **Analytical Dashboard:** Interactive charts using Recharts to visualize income vs. expense trends and savings rates.
+- **Full CRUD Functionality:** Seamlessly add, view, update, and delete financial transactions in real-time.
+- **Category & Priority Tracking:** Categorize expenses and track spending priority (Essential vs. Wants) for better discipline.
+- **Secure Authentication:** User-specific data protection with Firebase Auth (Google & Email/Password).
+- **Advanced Data Filtering:** Quickly filter transactions by category, payment method, or specific dates.
+- **Real-time KPI Metrics:** Instant calculation of total balance, monthly savings, and spending percentages.
+- **Responsive Sidebar:** A modern, mobile-friendly navigation sidebar with intuitive toggle controls.
+- **Profile Customization:** Personalized user settings to update profile images and account information.
+- **Private Routing:** Secure application architecture ensuring only authenticated users access the dashboard.
+- **Modern UI/UX:** Clean, professional interface built with Tailwind CSS and interactive toast notifications.
+
 
 ---
 
